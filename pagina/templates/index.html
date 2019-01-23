@@ -61,7 +61,7 @@
                     <li><a class="smoothscroll"  href="#about" title="Sobre">Sobre</a></li>
                     <li><a class="smoothscroll"  href="#services" title="Serviços">Serviços</a></li>
                     <!--<li><a class="smoothscroll"  href="#works" title="works">Equipe</a></li>-->
-                    <!--<li><a class="smoothscroll"  href="#clients" title="Cli">Clients</a></li>-->
+                    <li><a class="smoothscroll"  href="#clients" title="Cli">Nossos Trabalhos</a></li>
                     <li><a class="smoothscroll"  href="#contact" title="Contatos">Contato</a></li>
                 </ul>
     
@@ -331,7 +331,7 @@
                     {% for artigo in postagem %}
                         <div class="testimonials__slide">
                             <h2>{{ artigo.post.titulo }}</h2>
-                            <p>{{ artigo.post.texto|truncatewords:10 }} <a href="blog/{{ artigo.post.titulo }}"><span>Saiba mais</span></a></p>
+                            <p>{{ artigo.post.texto|truncatewords:10 }} <a href="blog/blog.html#{{ artigo.post.titulo }}"><span>Saiba mais</span></a></p>
                             <img src="{{ artigo.imagem_autor.url }}" alt="Imagem do Artigo" class="testimonials__avatar">
                             <div class="testimonials__info">
                                 <span class="testimonials__name">Autor:</span> 

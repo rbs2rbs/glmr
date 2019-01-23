@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html class="no-js" lang="pt">
+    <head>
+
+
+        <!--- basic page needs
+        ================================================== -->
+        <meta charset="utf-8">
+        <title>glmR</title>
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- mobile specific metas
+        ================================================== -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- CSS
+        ================================================== -->
+        <link rel="stylesheet" href="{% static 'css/base-blog.css' %}">
+        <link rel="stylesheet" href="{% static 'css/vendor-blog.css' %}">
+        <link rel="stylesheet" href="{% static 'css/main-blog.css' %}">
+
+        <!-- script
+        ================================================== -->
+        <script src="{% static 'js/modernizr.js' %}"></script>
+        <script src="{% static 'js/pace.min.js' %}"></script>
+
+        <!-- favicons
+        ================================================== -->
+        <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+    </head>
+
+    <body>
+        <div class="testimonials"><h1>Blog GLMR</h1></div>
+        {% for artigo in postagem %}
+            <div id = "{{ artigo.post.titulo }}" class="testimonials">
+                <h2>{{ artigo.post.titulo }}</h2>
+                <span>{{ artigo.post.data_criacao }}</span>
+                <br>
+                <p>{{ artigo.post.texto }}</p>
+                <img src="{{ artigo.imagem_autor.url }}"  class="testimonials__avatar">
+                <div class="testimonials__info">
+                    <span class="testimonials__name"><a href="{{ artigo.linkegin.url }}">{{ artigo.post.autor.get_full_name }}</a></span>
+                </div>
+                <hr>
+            </div>
+        {% endfor %}
+
+                <!-- Java Script
+        ================================================== -->
+        <script src="{%  static 'js/jquery-3.2.1.min.js' %}"></script>
+        <script src="{%  static 'js/plugins.js' %}"></script>
+
+    </body>
+</html>
