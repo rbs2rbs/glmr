@@ -176,7 +176,7 @@
             <div class="col-full">
          <p>
            
-           Empresa que utiliza da Ciências de Dados para transformar dados em informações úteis e em tempo real. Aplicando técnicas atuais na criação de  relatórios estatístico para tomada de decisão ou publicações de conteúdo. Realizamos visualização de dados de maneira interativa, de forma que você possa dialogar bem com suas análises, sempre focados em responder as questões centrais definidas nos objetivos das análises.  
+           Empresa que utiliza da Ciências de Dados para transformar dados em informações úteis. Aplicando técnicas atuais na criação de  relatórios estatístico para tomada de decisão ou publicações de conteúdo. Realizamos visualização de dados de maneira interativa, de forma que você possa dialogar bem com suas análises, sempre focados em responder as questões centrais definidas nos objetivos das análises.  
                 </p>
             </div>
         </div> <!-- end about-desc -->
@@ -226,7 +226,7 @@
                 </div>
                 <div class="service-text">
                     <h3 class="h2">Visualização de dados</h3>
-                    <p>Criamos análises descritivas dos dados com bastante claresa de sempre prezando por uma boa estética para que toda
+                    <p>Criamos análises descritivas dos dados com bastante clareza e construimos sempre prezando por uma boa estética para que toda
                     a informação seja captada de forma fácil e sem a perda de nenhum detalhe. Contruimos gráficos tanto estático bem como interativos.
                     </p>
                 </div>
@@ -238,7 +238,7 @@
                 </div>
                 <div class="service-text">
                     <h3 class="h2">Relátorios</h3>
-                    <p>Junto as vizulizações geramos um relatório clarificando todo o conteúdo das análises sempre utilizando de uma linguagem
+                    <p>Junto as vizulizações geramos um relatório clarificando todo o conteúdo das análises sempre utilizando uma linguagem
                     de entendimento democrático.
                     </p>
                 </div>
@@ -262,7 +262,7 @@
                 </div>
                 <div class="service-text">
                     <h3 class="h2">Criação de Ferramentas</h3>
-                    <p>Criamos ferramentas de análises para gestão de informações. As informações são geradas em tempo real a medida que os dados são
+                    <p>Criamos ferramentas de análises para gestão de informações. As informações são geradas a medida que os dados são
                     inseridos no sistema.
                     </p>
                 </div>
@@ -358,7 +358,7 @@
         <div class="row section-header" data-aos="fade-up">
             <div class="col-full">
                 <h3 class="subhead">Entre em Contato Conosco</h3>
-                <h1 class="display-2 display-2--light">Para Saber mais Sobre Orçamentos, Fale Conosco</h1>
+                <h1 class="display-2 display-2--light">Para mais informaçõoes entre em contato conosco!</h1>
             </div>
         </div>
 
@@ -367,24 +367,28 @@
             <div class="contact-primary">
 
                 <h3 class="h6">Nos Mande um E-mail</h3>
-
-                <form name="contactForm" id="contactForm" method="post" action="" novalidate="novalidate"  accept-charset="utf-8">
+                <form name="contactForm" role="form" id="contactForm" method="post" action="javascript:void(0);" novalidate="novalidate"  accept-charset="utf-8">
+                    {% csrf_token %}
                     <fieldset>
     
                     <div class="form-field">
-                        <input name="contactName" type="text" id="contactName" placeholder="Seu Nome" value="" minlength="2" required="" aria-required="true" class="full-width">
+                        <!-- <input name="contactName" type="text" id="contactName" placeholder="Seu Nome" value="" minlength="2" required="" aria-required="true" class="full-width"> -->
+                        {{ form.nome }}
                     </div>
                     <div class="form-field">
-                        <input name="contactEmail" type="email" id="contactEmail" placeholder="Seu E-mail" value="" required="" aria-required="true" class="full-width">
+                        <!-- <input name="contactEmail" type="email" id="contactEmail" placeholder="Seu E-mail" value="" required="" aria-required="true" class="full-width"> -->
+                        {{ form.from_email }}
                     </div>
                     <div class="form-field">
-                        <input name="contactSubject" type="text" id="contactSubject" placeholder="Assunto" value="" class="full-width">
+                        <!-- <input name="contactSubject" type="text" id="contactSubject" placeholder="Assunto" value="" class="full-width"> -->
+                        {{ form.subject }}
                     </div>
                     <div class="form-field">
-                        <textarea name="contactMessage" id="contactMessage" placeholder="Mensagem" rows="10" cols="50" required="" aria-required="true" class="full-width"></textarea>
+                        <!-- <textarea name="contactMessage" id="contactMessage" placeholder="Mensagem" rows="10" cols="50" required="" aria-required="true" class="full-width"></textarea> -->
+                        {{ form.message }}
                     </div>
                     <div class="form-field">
-                        <button class="full-width btn--primary">Enviar</button>
+                        <button type="submit" id="submit" name="submit" class="full-width btn--primary">Enviar</button>
                         <div class="submit-loader">
                             <div class="text-loader">Encaminhando....</div>
                             <div class="s-loader">
@@ -577,6 +581,8 @@
     <script src="{%  static 'js/plugins.js' %}"></script>
     <script src="{%  static 'js/main.js' %}"></script>
     <script src="{%  static 'js/lightwidget.js' %}"></script>
+    <script src="{%  static 'js/email.js' %}"></script>
+
 </body>
 
 </html>
