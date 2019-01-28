@@ -3,7 +3,7 @@
 
 <html class="no-js" lang="pt">
     <head>
-
+            
 
         <!--- basic page needs
         ================================================== -->
@@ -21,6 +21,8 @@
         <link rel="stylesheet" href="{% static 'css/base-blog.css' %}">
         <link rel="stylesheet" href="{% static 'css/vendor-blog.css' %}">
         <link rel="stylesheet" href="{% static 'css/main-blog.css' %}">
+        <!-- CSS MENU-BLOG -->
+        <link rel="stylesheet" href="{% static 'css/menu-blog.css' %}">
 
         <!-- script
         ================================================== -->
@@ -34,25 +36,69 @@
     </head>
 
     <body>
-        <div class="testimonials"><h1>Blog GLMR</h1></div>
+        
+
+            <header class="s-header">
+            
+                    <nav class="header-nav">
+            
+                        <a href="#0" class="header-nav__close" title="close"><span>Close</span></a>
+            
+                        <div class="header-nav__content">
+                            <h3>Menu</h3>
+                            
+                            <ul class="header-nav__list">
+                                <li class="current"><a class="smoothscroll"  href="/" title="Home">Página Inicial</a></li>
+                                {% for menu in postagem %}
+                                    <li><a class="smoothscroll"  href="#{{ menu.post.titulo|cut:' ' }}" title="Sobre">{{ menu.post.titulo }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </nav>
+                    <a class="header-menu-toggle" href="#0">
+                        <span class="header-menu-text">Menu</span>
+                        <span class="header-menu-icon"></span>
+                    </a>
+            
+                </header> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section>
+        <div class="testimonials artigos"><h1>Blog GLMR</h1></div>
         {% for artigo in postagem %}
-            <div id = "{{ artigo.post.titulo }}" class="testimonials">
+            <div id = "{{ artigo.post.titulo|cut:' ' }}" class="testimonials">
                 <h2>{{ artigo.post.titulo }}</h2>
                 <span>{{ artigo.post.data_criacao }}</span>
                 <br>
                 <p>{{ artigo.post.texto }}</p>
                 <img src="{{ artigo.imagem_autor.url }}"  class="testimonials__avatar">
                 <div class="testimonials__info">
-                    <span class="testimonials__name"><a href="{{ artigo.linkegin.url }}">{{ artigo.post.autor.get_full_name }}</a></span>
+                    <span class="testimonials__name"><a href="{{ artigo.linkedin }}" target = "blank">{{ artigo.post.autor.get_full_name }}</a></span>
                 </div>
                 <hr>
             </div>
         {% endfor %}
+        
+    </section>
 
                 <!-- Java Script
         ================================================== -->
         <script src="{%  static 'js/jquery-3.2.1.min.js' %}"></script>
         <script src="{%  static 'js/plugins.js' %}"></script>
+        <script src="{%  static 'js/main-blog.js' %}"></script>
+        <script src="{%  static 'js/lightwidget.js' %}"></script>
+        <script src="{%  static 'js/email.js' %}"></script>
 
     </body>
 </html>

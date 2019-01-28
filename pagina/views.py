@@ -35,7 +35,7 @@ def email(request):
             nome = form.cleaned_data['nome']
             message = "%s\n%s\n%s" % (nome, from_email,form.cleaned_data['message'])
             try:
-                send_mail(subject, message, from_email,['renan.bisposilva@gmail.com'], fail_silently=True,)
+                send_mail(subject, message, from_email,['renan.bisposilva@gmail.com','santana.guilherme@outlook.com'], fail_silently=True,)
             except BadHeaderError:
                 return HttpResponse(
             json.dumps("Falha"),

@@ -7,4 +7,4 @@ class ContactForm(forms.Form):
      widget=forms.TextInput(attrs={'placeholder': 'Nome'}))
     subject = forms.CharField(required=True, label="Assunto",
      widget=forms.TextInput(attrs={'placeholder': 'Assunto'}))
-    message = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Mensagem','cols':'60'}), required=True, label="Mensagem")
+    message = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Mensagem'}), required=True, label="Mensagem")
