@@ -3164,13 +3164,7 @@ html.no-csstransitions .home-content__main {
     width: 100%;
 }
 
-.message-warning {
-    color: #ff6163;
-}
 
-.message-success {
-    color: #028090;
-}
 
 .message-warning i, .message-success i {
     margin-right: 10px;

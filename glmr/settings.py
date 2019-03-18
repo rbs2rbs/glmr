@@ -29,6 +29,14 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
 
+MARKDOWNX_MARKDOWN_EXTENSIONS = [
+    'markdown.extensions.sane_lists',
+    'markdown.extensions.nl2br',
+    'markdown.extensions.extra',
+    'markdown.extensions.toc',
+    'markdown.extensions.codehilite',
+]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,7 +47,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pagina',
-    'blog'
+    'blog',
+    'markdownx',
+    'academico',
 ]
 
 EMAIL_BACKEND =  EMAIL_BACKEND

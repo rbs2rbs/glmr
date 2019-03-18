@@ -2,6 +2,8 @@ from django.db import models
 from django.utils import timezone
 from django.conf import settings
 from django.contrib.auth.models import User
+from markdownx.models import MarkdownxField
+from markdownx.utils import markdownify
 
 class Linkedin(models.Model):
     usuario = models.OneToOneField(User, on_delete = models.CASCADE)
@@ -20,10 +22,13 @@ class Linkedin(models.Model):
 class Postagem(models.Model):
     autor = models.ForeignKey('auth.user', on_delete = models.CASCADE)
     titulo = models.CharField(max_length=200)
-    texto = models.TextField()
     data_criacao = models.DateTimeField(default = timezone.now)
     data_publicado = models.DateTimeField(blank = True, null = True)
-    
+    texto = MarkdownxField()
+
+    @property
+    def formatted_markdown(self):
+        return markdownify(self.texto)    
 
     def publish(self):
         self.published_date = timezone.now()

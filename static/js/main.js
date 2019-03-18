@@ -282,6 +282,7 @@
         });
     
     };
+    
 
    /* Smooth Scrolling
     * ------------------------------------------------------ */
@@ -340,12 +341,11 @@
     
                 var sLoader = $('.submit-loader');
                 var formData = $(form).serializeArray();
-                var dataToSend = {};
+                var dataToSend = new FormData();
                 for(var a=0; a < formData.length; a++) {
                   dataToSend[formData[a].name] = formData[a].value;
                 }
-                  
-              
+                
                 $.ajax({
                     async: true,
                     crossDomain: true,
@@ -353,12 +353,15 @@
                       "content-type": "application/json",
                       "cache-control": "no-cache",
                     },
+                    url: 'email',
                     //processData: false,
                     method: "POST",
-                    url: "https://beta.rstudioconnect.com/content/3898/email",
+                    
                     //contentType: "application/json",
                     //dataType: "json",
-                    data: JSON.stringify(dataToSend),
+                    // data: JSON.stringify(dataToSend),
+                    data: dataToSend,
+                    // csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),
                     beforeSend: function() { 
     
                         sLoader.slideDown("slow");
@@ -368,6 +371,7 @@
                          
                         // Message was sent
                         if (msg=='OK') {
+                            console.log(msg);
                             sLoader.slideUp("slow"); 
                             $('.message-warning').fadeOut();
                             $('#contactForm').fadeOut();
@@ -417,7 +421,7 @@
     var clAjaxChimp = function() {
         
         $('#mc-form').ajaxChimp({
-            language: 'es',
+            language: 'pt',
             url: cfg.mailChimpURL
         });
 
@@ -480,7 +484,7 @@
         clSmoothScroll();
         clPlaceholder();
         clAlertBoxes();
-        clContactForm();
+        // clContactForm();
         clAOS();
         clAjaxChimp();
         clBackToTop();

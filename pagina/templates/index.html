@@ -11,8 +11,8 @@
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>glmR</title>
-    <meta name="description" content="Equpie de Cientistas de Dados e Estatisticos que oferece serviços de análise de dados com abordagens modernas. 
+    <title>glmR - Consultoria Estatística e de Ciência de Dados</title>
+    <meta name="description" content="Equipe de Cientistas de Dados e Estatisticos que oferece serviços de análise de dados com abordagens modernas. 
                                         Construimos análises interativas e criamos aplicações para modernizar suas análises de dados.">
     <META NAME="ABSTRACT" CONTENT="Equpie de Cientistas de Dados e Estatisticos que oferece serviços de análise de dados com abordagens modernas. 
                                             Construimos análises interativas e criamos aplicações para modernizar suas análises de dados.">
@@ -30,6 +30,12 @@
     <link rel="stylesheet" href="{% static 'css/vendor.css' %}">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="{% static 'css/whats.css' %}">
+
+     <!-- Editor de markdown -->
+     <link rel="stylesheet" href="{% static 'css/codeblok.css' %}">
+    <!-- Adição de Editor de Simbolos Matemáticos -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
 
     <!-- script
     ================================================== -->
@@ -260,7 +266,7 @@
                     <i class="icon-megaphone"></i>
                 </div>  
                 <div class="service-text">
-                    <h3 class="h2">Mídia sócial</h3>
+                    <h3 class="h2">Mídia social</h3>
                     <p>Utilizamos de dados fornecidos via mídias sociais (Instagram, Facebook, YouTube, Twiter) para criação de relatórios de quem
                     faz uso das mídias como seu instrumento de trabalho.
                     </p>
@@ -310,7 +316,7 @@
 
     <!-- clients
     ================================================== -->
-    <!-- <section id="clients" class="s-clients">
+    <section id="clients" class="s-clients">
 
         <div class="row section-header" data-aos="fade-up">
             <div class="col-full">
@@ -336,13 +342,13 @@
             </div>
         </div>  -->
 
-        <!----<div class="row clients-testimonials" data-aos="fade-up">
+        <div class="row clients-testimonials" data-aos="fade-up">
             <div class="col-full">
                 <div class="testimonials">
                     {% for artigo in postagem %}
                         <div class="testimonials__slide">
                             <h2>{{ artigo.post.titulo }}</h2>
-                            <p>{{ artigo.post.texto|truncatewords:10 }} <a href="blog/blog.html#{{ artigo.post.titulo }}"><span>Saiba mais</span></a></p>
+                            <p>{{ artigo.post.formatted_markdown|truncatewords:10|safe }} <a href="blog/blog.html/?pagina={{ forloop.counter }}"><span>Saiba mais</span></a></p>
                             <img src="{{ artigo.imagem_autor.url }}" alt="Imagem do Artigo" class="testimonials__avatar">
                             <div class="testimonials__info">
                                 <span class="testimonials__name">Autor:</span> 
@@ -356,7 +362,7 @@
             </div> 
         </div>
 
-    </section> -->
+    </section> 
 
 
     <!-- contact

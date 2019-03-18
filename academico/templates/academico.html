@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static %}
+<html class="no-js" lang="pt">
+    <head>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ 
+        <title>django-chartjs line chart demo</title>
+    </head>
+    <body>
+
+        <a href = "https://mendeley-show-me-access-tokens.herokuapp.com/" target="_blank"> Gerar API </a>
+        <form class="form-inline my-2 my-lg-0" action="{% url 'academico' %}" method="get">
+            {% csrf_token %}
+            <label for="inputState">Busca</label>
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="busca">
+            <label for="inputState">Token</label>
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="token">
+            <div class="form-group col-md-4">
+                <label for="inputState">Tipo de Busca</label>
+                <select id="inputState" class="form-control" name="tipo">
+                    <option value = "abstract">Texto</option>
+                    <option value = "author">Autor</option>
+                </select>
+            </div>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+
+        <h1>10 Palavras-Chaves mais Associadas ao Tema</h1>
+        <canvas id="bar-chart" width="400" height="225"></canvas>
+        <script type="text/javascript">
+            var a = jQuery.parseJSON('{{ p_chave.valor }}')
+            var b = jQuery.parseJSON('{{ p_chave.label|safe }}')
+            new Chart(document.getElementById("bar-chart"), {
+                type: 'horizontalBar',
+                data: {
+                labels: b,
+                datasets: [
+                    {
+                    label: "Frequência da Palavra-Chave",
+                    backgroundColor: ["#4900E5", "#4119E5","#3A32E6","#334BE7","#2B64E8","#247DE9","#1D96EA","#15AFEB","#0EC8EC","#07E1ED"],
+                    data: a
+                    }
+                ]
+                },
+                options: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: ''
+                    },
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                min : 0
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                fontSize: 40
+                            }
+                        }]
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

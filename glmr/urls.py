@@ -22,4 +22,6 @@ urlpatterns = [
     url('admin/', admin.site.urls),
     url('',include('pagina.urls')),
     url('blog/',include('blog.urls')),
+    url('academico/',include('academico.urls')),
+    url(r'^markdownx/', include('markdownx.urls')),
 ]+static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
