@@ -31,43 +31,22 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
         </form>
 
-        <h1>10 Palavras-Chaves mais Associadas ao Tema</h1>
-        <canvas id="bar-chart" width="400" height="225"></canvas>
+        <h1></h1>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <canvas id="bar-chart"></canvas>
+                </div>
+                <div class="col">    
+                    <canvas id="line-chart"></canvas>
+                </div>
+            </div>
         <script type="text/javascript">
-            var a = jQuery.parseJSON('{{ p_chave.valor }}')
-            var b = jQuery.parseJSON('{{ p_chave.label|safe }}')
-            new Chart(document.getElementById("bar-chart"), {
-                type: 'horizontalBar',
-                data: {
-                labels: b,
-                datasets: [
-                    {
-                    label: "Frequência da Palavra-Chave",
-                    backgroundColor: ["#4900E5", "#4119E5","#3A32E6","#334BE7","#2B64E8","#247DE9","#1D96EA","#15AFEB","#0EC8EC","#07E1ED"],
-                    data: a
-                    }
-                ]
-                },
-                options: {
-                    legend: { display: false },
-                    title: {
-                        display: true,
-                        text: ''
-                    },
-                    scales: {
-                        xAxes: [{
-                            ticks: {
-                                min : 0
-                            }
-                        }],
-                        yAxes: [{
-                            ticks: {
-                                fontSize: 40
-                            }
-                        }]
-                    }
-                }
-            });
+            var p_chave_valor = jQuery.parseJSON('{{ p_chave.valor }}')
+            var p_chave_label = jQuery.parseJSON('{{ p_chave.label|safe }}')
+            var p_anos_valor = jQuery.parseJSON('{{ anos.valor }}')
+            var p_anos_ano = jQuery.parseJSON('{{ anos.ano }}')
         </script>
+        <script src="{%  static 'js/graficos.js' %}" type="text/javascript"></script>
     </body>
 </html>

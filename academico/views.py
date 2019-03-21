@@ -17,8 +17,13 @@ def academico (request):
             'p_chave' : {
                 'valor' : [],
                 'label' : [],
+                },
+            'anos': {
+                'valor' : [],
+                'ano' : []
+                }
             }
-        }
+        
         if (busca['busca']!="" and busca['busca']!= None and busca['tipo']!="" and busca['tipo']!= None):
             dados = Scholar(
                 busca = busca['busca'], 
@@ -41,5 +46,10 @@ def academico (request):
             
             for titulo in dados.saida:
                 busca['titulos'].append(titulo['titulo'])
+  
+
+            for an,v in grafico('ano',dados).items():
+                busca['anos']['valor'].append(int(v))
+                busca['anos']['ano'].append(int(an))
 
         return render(request,'academico.html', busca)

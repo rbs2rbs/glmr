@@ -1,15 +1,15 @@
 # PARA FAZER O PARSE HTML
-from bs4 import BeautifulSoup as BS
+# from bs4 import BeautifulSoup as BS
 # PARA FAZER AS REQUISIÇÕES HTTP
 import requests
 # UTILIZAR REGEX PARA ESTRAIR TEXTOS
 import re
-
-import matplotlib.pyplot as plt
+import json
+# import matplotlib.pyplot as plt
 
 # Create random data with numpy
-import numpy as np
-import pandas as pd
+# import numpy as np
+# import pandas as pd
 
 import collections
 
@@ -88,6 +88,7 @@ class Scholar(object):
 def grafico(t,dados):
   if not t in ["ano","titulo","resumo","palavras-chave"]:
       return ("Tipo de grafico Inválido")
+
   if t == "ano":
     # ANALISE ANO
 
@@ -95,13 +96,18 @@ def grafico(t,dados):
     for ano in dados.saida:
         anos.append(ano['ano'])
 
-    anos_np = np.unique(anos, return_counts=True)
-    for index, i in enumerate(range(min(anos_np[0]),max(anos_np[0])+1)):
-        if i not in anos:
-            anos_np = np.insert(anos_np,[index],[[i],[0]], axis=1)
+    anos_frequencia = collections.Counter(anos)
+    
+    print(anos)
+    print(anos_frequencia.keys())
 
-    plt.plot(anos_np[0], anos_np[1], 'r--')
-    plt.show()
+    for a in range(min(anos_frequencia.keys()),max(anos_frequencia.keys())+1):
+      if (not a in anos_frequencia.keys()) and (a>=1900 and a<=2019):
+        anos_frequencia[a] = 0
+
+    
+    return (anos_frequencia)
+
 
   elif t == "titulo":
     # ANALISE TITULO
@@ -119,12 +125,6 @@ def grafico(t,dados):
 
     titulo_filtrado = collections.Counter(titulo_filtrado).most_common()
 
-    df = pd.DataFrame(titulo_filtrado[:10])
-
-    p = df.plot(kind='barh', title ="Palavras Frequentes", figsize=(15, 10), legend=False, fontsize=12)
-    p.set_yticklabels(df[0])
-    p.invert_yaxis()
-    plt.show()
 
   elif t == "resumo":
 
@@ -143,12 +143,7 @@ def grafico(t,dados):
 
     resumo_filtrado = collections.Counter(resumo_filtrado).most_common()
 
-    df = pd.DataFrame(resumo_filtrado[:10])
 
-    p = df.plot(kind='barh', title ="Palavras Frequentes", figsize=(15, 10), legend=False, fontsize=12)
-    p.set_yticklabels(df[0])
-    p.invert_yaxis()
-    plt.show()
   
   elif t == "palavras-chave":
 
@@ -162,10 +157,3 @@ def grafico(t,dados):
     palavra_filtrado = collections.Counter(palavra_filtrado).most_common()
 
     return (palavra_filtrado)
-
-    df = pd.DataFrame(palavra_filtrado[:10])
-
-    p = df.plot(kind='barh', title ="Palavras Frequentes", figsize=(15, 10), legend=False, fontsize=12)
-    p.set_yticklabels(df[0])
-    p.invert_yaxis()
-    plt.show()
