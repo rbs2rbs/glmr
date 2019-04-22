@@ -26,7 +26,7 @@ SECRET_KEY = 'n#f=*n7zl8&8^dxj^vf2=g&-mn)!=-p^mrx%eu53=a0rocn^gs'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com','www.glmrconsultoria.com.br/academico/']
 
 
 MARKDOWNX_MARKDOWN_EXTENSIONS = [

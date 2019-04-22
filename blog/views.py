@@ -23,6 +23,7 @@ def blog(request):
 
     complete_posts = paginacao.get_page(pagina)
 
+
     return render(request,"blog.html", 
         {
             'postagem' : complete_posts, 
