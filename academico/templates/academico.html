@@ -13,14 +13,13 @@
         <title>django-chartjs line chart demo</title>
     </head>
     <body>
-
-        <a href = "https://mendeley-show-me-access-tokens.herokuapp.com/" target="_blank"> Gerar API </a>
-        <form class="form-inline my-2 my-lg-0" action="{% url 'academico' %}" method="get">
+        <form class="form-inline my-2 my-lg-0" action="{% url 'busca' %}" method="get">
             {% csrf_token %}
             <label for="inputState">Busca</label>
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="busca">
+            <input type="hidden" name="a" value="1" > 
             <!-- <label for="inputState">Token</label> -->
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="token">
+            <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="token"> -->
             <div class="form-group col-md-4">
                 <label for="inputState">Tipo de Busca</label>
                 <select id="inputState" class="form-control" name="tipo">

@@ -1,1 +1,28 @@
-<a href = "https://api.mendeley.com/oauth/authorize?client_id=6757&redirect_uri=http://127.0.0.1:8000/academico/&response_type=token&scope=all&state=213653957730.97845"> Gerar API </a>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+{% csrf_token %}
+
+<script>
+    var params = {}, queryString = location.hash.substring(1),
+    regex = /([^&=]+)=([^&]*)/g, m;
+    while (m = regex.exec(queryString)) {
+        params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+    }
+    var token = $.ajax({
+        headers: {
+        "X-CSRFToken": $("input[name='csrfmiddlewaretoken']").val(),
+        },
+        // url: 'token/',
+        processData: false,
+        'type': 'POST',
+        
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify(params.access_token)
+
+        ,
+        success: function(data) {
+            window.location.replace('http://'+window.location.host+"/academico/token/busca") 
+        }
+    })
+</script>
