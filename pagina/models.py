@@ -25,10 +25,14 @@ class Postagem(models.Model):
     data_criacao = models.DateTimeField(default = timezone.now)
     data_publicado = models.DateTimeField(blank = True, null = True)
     texto = MarkdownxField()
+    resumo = MarkdownxField()
 
     @property
-    def formatted_markdown(self):
-        return markdownify(self.texto)    
+    def formatted_markdown_texto(self):
+        return markdownify(self.texto)
+
+    def formatted_markdown_resumo(self):
+        return markdownify(self.resumo)      
 
     def publish(self):
         self.published_date = timezone.now()

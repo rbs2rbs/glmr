@@ -22,6 +22,12 @@
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+   
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    
 </head>
 
 <body>
@@ -42,11 +48,11 @@
                 {% for titulo in postagem_titulo %}
                     {% if forloop.counter == pagina %}
                         <li class="active">
-                            <a href="?pagina={{ forloop.counter }}" >{{ titulo }}</a>
+                            <a class="botao-fixo" href="?pagina={{ forloop.counter }}" >{{ titulo }}</a>
                         </li>
                     {% else %}
                         <li>
-                            <a href="?pagina={{ forloop.counter }}">{{ titulo }}</a>
+                            <a class="botao-fixo" href="?pagina={{ forloop.counter }}">{{ titulo }}</a>
                         </li>
                     {% endif %}
                 {% endfor %}
@@ -96,10 +102,10 @@
             </nav>
             {% for artigo in postagem %}
                 <div id = "{{ artigo.post.titulo|cut:' ' }}" class="testimonials">
-                    <h2>{{ artigo.post.titulo }}</h2>
-                    <span>{{ artigo.post.data_criacao }}</span>
+                    <h2 class="cor-titulo">{{ artigo.post.titulo }}</h2>
+                    <span class="cor-titulo">{{ artigo.post.data_criacao }}</span>
                     <br>
-                    <p>{% autoescape off %}{{ artigo.post.formatted_markdown }}{% endautoescape %}</p>
+                    <p>{% autoescape off %}{{ artigo.post.formatted_markdown_texto }}{% endautoescape %}</p>
                     <div class="autor">
                         <img src="{{ artigo.imagem_autor.url }}"  class="testimonials__avatar">
                         <div class="testimonials__info">
@@ -108,10 +114,26 @@
                     </div>
                     <hr>
                 </div>
-             {% endfor %}
-             <button type="button" id="proximoArtigo" class="btn btn-info">
-                <span><a href="?pagina={{ proxima_pagina }}">Proximo Artigo</a></span>
-            </button>
+            {% endfor %}
+            {% if pagina_anterior != 0 and proxima_pagina != 0 %}
+                <button type="button" id="proximoArtigo" class="btn btn-info">
+                    <span><a class="botao-fixo" href="?pagina={{ pagina_anterior }}">Artigo Anterior</a></span>
+                </button>
+                <button type="button" id="proximoArtigo" class="btn btn-info">
+                    <span><a class="botao-fixo" href="?pagina={{ proxima_pagina }}">Proximo Artigo</a></span>
+                </button>
+            {% else %}
+                {% if proxima_pagina == 0 and pagina_anterior != 0 %}
+                    <button type="button" id="proximoArtigo" class="btn btn-info">
+                        <span><a class="botao-fixo" href="?pagina={{ pagina_anterior }}">Artigo Anterior</a></span>
+                    </button>
+                {% endif %}
+                {% if pagina_anterior == 0 and proxima_pagina != 0 %}
+                    <button type="button" id="proximoArtigo" class="btn btn-info">
+                        <span><a class="botao-fixo" href="?pagina={{ proxima_pagina }}">Proximo Artigo</a></span>
+                    </button>
+                {% endif %}
+            {% endif %}
         </div>
     </div>
 

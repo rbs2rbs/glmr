@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="{% static 'css/whats.css' %}">
 
      <!-- Editor de markdown -->
-     <link rel="stylesheet" href="{% static 'css/codeblok.css' %}">
+    <link rel="stylesheet" href="{% static 'css/codeblok.css' %}">
     <!-- Adição de Editor de Simbolos Matemáticos -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
 
@@ -45,7 +45,6 @@
     <!-- favicons
     ================================================== -->
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
 </head>
 
@@ -348,7 +347,7 @@
                     {% for artigo in postagem %}
                         <div class="testimonials__slide">
                             <h2>{{ artigo.post.titulo }}</h2>
-                            <p>{{ artigo.post.formatted_markdown|truncatewords:10|safe }} <a href="blog/blog.html/?pagina={{ forloop.counter }}"><span>Saiba mais</span></a></p>
+                            <p>{{ artigo.post.formatted_markdown_resumo|truncatewords:10|safe }} <a href="blog/blog.html/?pagina={{ forloop.counter }}"><span>Saiba mais</span></a></p>
                             <img src="{{ artigo.imagem_autor.url }}" alt="Imagem do Artigo" class="testimonials__avatar">
                             <div class="testimonials__info">
                                 <span class="testimonials__name">Autor:</span> 

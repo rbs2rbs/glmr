@@ -23,11 +23,31 @@ def blog(request):
 
     complete_posts = paginacao.get_page(pagina)
 
+    if int(pagina) == 1:
+        return render(request,"blog.html", 
+            {
+                'postagem' : complete_posts, 
+                'postagem_titulo': postagem ,
+                'pagina':int(pagina),
+                'pagina_anterior' : 0, 
+                'proxima_pagina' : int(pagina)+1
+            })
 
-    return render(request,"blog.html", 
-        {
-            'postagem' : complete_posts, 
-            'postagem_titulo': postagem ,
-            'pagina':int(pagina), 
-            'proxima_pagina' : int(pagina)+1
-        })
+    if int(pagina) == int(postagem.count()):
+        return render(request,"blog.html", 
+            {
+                'postagem' : complete_posts, 
+                'postagem_titulo': postagem ,
+                'pagina':int(pagina), 
+                'pagina_anterior' : int(pagina)-1,
+                'proxima_pagina' : 0
+            })
+    else:
+        return render(request,"blog.html", 
+            {
+                'postagem' : complete_posts, 
+                'postagem_titulo': postagem ,
+                'pagina':int(pagina), 
+                'pagina_anterior' : int(pagina)-1,
+                'proxima_pagina' : int(pagina)+1
+            })
