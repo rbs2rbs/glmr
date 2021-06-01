@@ -38,5 +38,5 @@ snaptime==0.2.4
 SQLAlchemy==1.2.18
 statsmodels==0.9.0
 uritemplate==3.0.0
-urllib3==1.24.1
+urllib3==1.26.5
 xkit==0.0.0
